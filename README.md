@@ -55,6 +55,12 @@ ln -s ../v-yaml yaml
 
 V will resolve the import `yaml` to the symlinked directory.
 
+You will usually need the `Any` type as well:
+
+```txt
+v install --git https://github.com/prantlf/v-jsany
+```
+
 ## API
 
 ### parse_text(input string) !Any
