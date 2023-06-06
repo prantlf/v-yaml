@@ -1,8 +1,14 @@
 module yaml
 
 #flag -I @VROOT/libyaml/include
-#flag -L @VROOT/libyaml/src/.libs
-#flag -lyaml
+#flag @VROOT/libyaml/src/api.o
+#flag @VROOT/libyaml/src/dumper.o
+#flag @VROOT/libyaml/src/emitter.o
+#flag @VROOT/libyaml/src/loader.o
+#flag @VROOT/libyaml/src/parser.o
+#flag @VROOT/libyaml/src/reader.o
+#flag @VROOT/libyaml/src/scanner.o
+#flag @VROOT/libyaml/src/writer.o
 #include "yaml.h"
 
 [typedef]
