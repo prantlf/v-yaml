@@ -1,0 +1,38 @@
+struct InnerStruct {
+	answer int
+}
+
+struct OuterStruct {
+	inner InnerStruct
+}
+
+fn unmarshal[T]() T {
+	$if T is int {
+		return unmarshal_int[int]()
+	} $else $if T is $struct {
+		return unmarshal_struct(T{})
+	}
+	return T{}
+}
+
+fn unmarshal_struct[T](dst T) T {
+	$for field in T.fields {
+		$if field.typ is int {
+			dst.$(field.name) = unmarshal_int[int]()
+		} $else $if field.is_struct {
+			dst.$(field.name) = unmarshal_struct(dst.$(field.name))
+		}
+	}
+	return dst
+}
+
+fn unmarshal_int[T]() T {
+	return 42
+}
+
+fn main() {
+	// r := unmarshal[InnerStruct]()
+	// assert r.answer == 42
+	r := unmarshal[OuterStruct]()
+	assert r.inner.answer == 42
+}

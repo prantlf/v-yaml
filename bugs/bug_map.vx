@@ -1,0 +1,6 @@
+fn f[T](src map[string]T) {
+}
+
+// m := { 'a': 1 }
+// f(m)
+f({ 'a': 1 })
