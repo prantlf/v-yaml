@@ -1,7 +1,7 @@
 module yaml
 
 import os
-import jsany { Any }
+import jany { Any }
 
 fn C.strtod(charptr, &charptr) f64
 
@@ -57,7 +57,7 @@ fn parse(parser &C.yaml_parser_t) !Any {
 				continue
 			}
 			C.YAML_STREAM_END_EVENT {
-				return Any(jsany.null)
+				return Any(jany.null)
 			}
 			C.YAML_MAPPING_START_EVENT {
 				return parse_object(parser)
@@ -175,7 +175,7 @@ fn parse_value(parser &C.yaml_parser_t, event &C.yaml_event_t) !Any {
 		C.YAML_PLAIN_SCALAR_STYLE {
 			match raw {
 				'null' {
-					return Any(jsany.null)
+					return Any(jany.null)
 				}
 				'true' {
 					return Any(true)

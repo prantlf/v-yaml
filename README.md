@@ -5,7 +5,7 @@ Strictly parse and format YAML data.
 * Works with the `Any` type suitable for safe handling of JSON/YAML data.
 * Allows unmarshalling the YAML contents to a static V type.
 
-Uses [jsany]. See also the [json] package.
+Uses [jany]. See also the [json] package.
 
 ## Synopsis
 
@@ -55,17 +55,18 @@ ln -s ../v-yaml yaml
 
 V will resolve the import `yaml` to the symlinked directory.
 
-You will usually need the `Any` type as well:
+You will usually need the `Any` type as well, either from [VPM] or from GitHub:
 
 ```txt
-v install --git https://github.com/prantlf/v-jsany
+v install prantlf.jany
+v install --git https://github.com/prantlf/v-jany
 ```
 
 ## API
 
 ### parse_text(input string) !Any
 
-Parses an input string in the YAML format to an `Any` value. See [jsany] for more information about the `Any` type.
+Parses an input string in the YAML format to an `Any` value. See [jany] for more information about the `Any` type.
 
 ```go
 input := r'
@@ -76,7 +77,7 @@ any := parse_text(input)
 
 ### parse_file(path string) !Any
 
-Loads the contents of a text file in the YAML format and parses it to an `Any` value. See [jsany] for more information about the `Any` type.
+Loads the contents of a text file in the YAML format and parses it to an `Any` value. See [jany] for more information about the `Any` type.
 
 ```go
 any := parse_file('config.yaml')
@@ -84,7 +85,7 @@ any := parse_file('config.yaml')
 
 ### unmarshal_text[T](input string, opts UnmarshalOpts) !T
 
-Unmarshals an input string in the YAML format to an instance of `T`. See [jsany] for more information about the `Any` type and the `UnmarshalOpts` struct.
+Unmarshals an input string in the YAML format to an instance of `T`. See [jany] for more information about the `Any` type and the `UnmarshalOpts` struct.
 
 ```go
 struct Config {
@@ -99,7 +100,7 @@ config := unmarshal_text[Config](input)
 
 ### unmarshal_file[T](path string, opts UnmarshalOpts) !T
 
-Loads the contents of a text file in the YAML format and unmarshals it to an instance of `T`. See [jsany] for more information about the `Any` type and the `UnmarshalOpts` struct.
+Loads the contents of a text file in the YAML format and unmarshals it to an instance of `T`. See [jany] for more information about the `Any` type and the `UnmarshalOpts` struct.
 
 ```go
 struct Config {
@@ -118,7 +119,7 @@ This is a work in progress.
 * Add `marshal_*` functions.
 * Enable support for arrays (bug [#18317]).
 
-[VPM]: https://vpm.vlang.io/packages/prantlf.jsany
-[jsany]: https://github.com/prantlf/v-jsany
+[VPM]: https://vpm.vlang.io/packages/prantlf.jany
+[jany]: https://github.com/prantlf/v-jany
 [json]: https://github.com/prantlf/v-json
 [#18317]: https://github.com/vlang/v/issues/18317

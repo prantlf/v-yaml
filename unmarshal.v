@@ -1,6 +1,6 @@
 module yaml
 
-import jsany { UnmarshalOpts, unmarshal }
+import jany { UnmarshalOpts, unmarshal }
 
 pub fn unmarshal_file[T](path string, opts UnmarshalOpts) !T {
 	a := parse_file(path)!

@@ -1,6 +1,6 @@
 module yaml
 
-import jsany { Any }
+import jany { Any }
 
 pub struct YamlError {
 	Error
