@@ -1,6 +1,6 @@
 module yaml
 
-import jany { UnmarshalOpts, unmarshal }
+import prantlf.jany { UnmarshalOpts, unmarshal }
 
 pub fn unmarshal_file[T](path string, opts UnmarshalOpts) !T {
 	a := parse_file(path)!

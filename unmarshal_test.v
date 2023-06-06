@@ -1,6 +1,6 @@
 module yaml
 
-import jany { UnmarshalOpts }
+import prantlf.jany { UnmarshalOpts }
 
 fn test_unmarshal_null_to_scalar() {
 	unmarshal_text[int]('', UnmarshalOpts{}) or {

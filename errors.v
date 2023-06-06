@@ -1,6 +1,6 @@
 module yaml
 
-import jany { Any }
+import prantlf.jany { Any }
 
 pub struct YamlError {
 	Error

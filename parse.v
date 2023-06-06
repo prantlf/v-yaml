@@ -1,7 +1,7 @@
 module yaml
 
 import os
-import jany { Any }
+import prantlf.jany { Any }
 
 fn C.strtod(charptr, &charptr) f64
 
