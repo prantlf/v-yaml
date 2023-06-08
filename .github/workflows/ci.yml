@@ -28,4 +28,5 @@ jobs:
     - name: Test
       run: |
         cd yaml
+        ../v install prantlf.jany
         ../v test .
