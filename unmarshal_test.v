@@ -70,7 +70,6 @@ fn test_inmarshal_string() {
 	assert r == 'a'
 }
 
-/*
 fn test_unmarshal_array() {
 	input := r'
 - 1
@@ -78,7 +77,6 @@ fn test_unmarshal_array() {
 	r := unmarshal_text[[]int](input, UnmarshalOpts{})!
 	assert r == [1]
 }
-*/
 
 enum Human {
 	man
@@ -234,7 +232,6 @@ int: null
 	assert false
 }
 
-/*
 struct OptionalArray {
 	int ?[]int
 }
@@ -242,13 +239,12 @@ struct OptionalArray {
 fn test_unmarshal_optional_array() {
 	input := r'
 int:
-	- 1
+  - 1
 '
 	r := unmarshal_text[OptionalArray](input, UnmarshalOpts{})!
 	assert r.int?.len == 1
 	assert r.int?[0] == 1
 }
-*/
 
 /*
 struct ArrayOfOptions {

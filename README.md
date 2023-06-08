@@ -117,7 +117,6 @@ This is a work in progress.
 * Add the function `stringify`.
 * Support `replacer` for `stringify` and `reviver` for `parse`.
 * Add `marshal_*` functions.
-* Enable support for arrays (bug [#18317]).
 
 [VPM]: https://vpm.vlang.io/packages/prantlf.jany
 [jany]: https://github.com/prantlf/v-jany
