@@ -34,26 +34,12 @@ config := unmarshal_file[Config]('config.yaml')
 
 ## Installation
 
-This package isn't ready for installation from [VPM] or from GitHub yet. It has a native C dependency, which has to be built before this package can be used. This is a workaround how to develop for the time being:
+You can install this package either from [VPM] or from GitHub:
 
-1) Clone and build the native library from the sources:
-
-```sh
-git clone --recurse-submodules git://github.com/prantlf/v-yaml.git
-cd v-yaml/libyaml
-./bootstrap
-./configure
-make
+```txt
+v install prantlf.yaml
+v install --git https://github.com/prantlf/v-yaml
 ```
-
-2) Create a symbolic link in your project using this package:
-
-```sh
-cd myproject
-ln -s ../v-yaml yaml
-```
-
-V will resolve the import `yaml` to the symlinked directory.
 
 You will usually need the `Any` type as well, either from [VPM] or from GitHub:
 
