@@ -97,7 +97,8 @@ struct Empty {}
 
 fn test_unmarshal_empty_input() {
 	unmarshal_text[Empty]('', UnmarshalOpts{}) or {
-		assert err.msg() == 'null cannot be cast to yaml.Empty'
+		assert err.msg() == 'null cannot be cast to yaml.Empty' ||
+			err.msg() == 'null cannot be cast to .Empty' // GitHub CI
 		return
 	}
 	assert false
