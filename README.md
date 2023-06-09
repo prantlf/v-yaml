@@ -5,7 +5,7 @@ Strictly parse and format YAML data.
 * Works with the `Any` type suitable for safe handling of JSON/YAML data.
 * Allows unmarshalling the YAML contents to a static V type.
 
-Uses [jany]. See also the [json] package.
+Uses [jany]. See also the [json] package and the [yaml2json] tool.
 
 ## Synopsis
 
@@ -107,4 +107,4 @@ This is a work in progress.
 [VPM]: https://vpm.vlang.io/packages/prantlf.jany
 [jany]: https://github.com/prantlf/v-jany
 [json]: https://github.com/prantlf/v-json
-[#18317]: https://github.com/vlang/v/issues/18317
+[yaml2json]: https://github.com/prantlf/v-yaml2json
