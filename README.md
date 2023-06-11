@@ -10,7 +10,7 @@ Uses [jany]. See also the [json] package and the [yaml2json] tool.
 ## Synopsis
 
 ```go
-import yaml { parse_file, parse_text }
+import prantlf.yaml { parse_file, parse_text }
 
 // Parse text input
 input := r'
@@ -49,6 +49,8 @@ v install --git https://github.com/prantlf/v-jany
 ```
 
 ## API
+
+The following functions are exported:
 
 ### parse_text(input string) !Any
 
