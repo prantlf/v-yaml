@@ -15,18 +15,15 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout V
-      uses: actions/checkout@v3
+    - name: Setup V
+      uses: prantlf/setup-v-action@v1
       with:
-        repository: vlang/v
-    - name: Checkout
+        version: master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Checkout Sources
       uses: actions/checkout@v3
-      with:
-        path: yaml
-    - name: Build V
-      run: make
+    - name: Install Dependencies
+      run: v install prantlf.jany
     - name: Test
-      run: |
-        cd yaml
-        ../v install prantlf.jany
-        ../v test .
+      run: v test .
