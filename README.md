@@ -1,9 +1,10 @@
 # YAML Parser and Formatter
 
-Strictly parse and format YAML data.
+Strictly parse and format [YAML] data.
 
-* Works with the `Any` type suitable for safe handling of JSON/YAML data.
-* Allows unmarshalling the YAML contents to a static V type.
+* Works [fast](#performance) leveraging [libyaml] written in C.
+* Works with the `Any` type suitable for safe handling of [JSON]/[YAML] data.
+* Allows unmarshalling the [YAML] contents to a static V type.
 
 Uses [jany]. See also the [json] package and the [yaml2json] tool.
 
@@ -98,6 +99,15 @@ struct Config {
 config := unmarshal_file[Config]('config.yaml')
 ```
 
+## Performance
+
+This module is only 2.6x slower than `prantlf.json` when parsing more complicated input:
+
+    ❯ ./parse_bench.vsh
+
+    SPENT   271.321 ms in parsing with prantlf.json
+    SPENT   708.940 ms in parsing with prantlf.yaml
+
 ## TODO
 
 This is a work in progress.
@@ -110,3 +120,6 @@ This is a work in progress.
 [jany]: https://github.com/prantlf/v-jany
 [json]: https://github.com/prantlf/v-json
 [yaml2json]: https://github.com/prantlf/v-yaml2json
+[libyaml]: https://github.com/yaml/libyaml/
+[JSON]: https://www.json.org/
+[YAML]: https://yaml.org/
