@@ -116,7 +116,7 @@ This is a work in progress.
 * Support `replacer` for `stringify` and `reviver` for `parse`.
 * Add `marshal_*` functions.
 
-[VPM]: https://vpm.vlang.io/packages/prantlf.jany
+[VPM]: https://vpm.vlang.io/packages/prantlf.yaml
 [prantlf.jany]: https://github.com/prantlf/v-jany
 [prantlf.json]: https://github.com/prantlf/v-json
 [yaml2json]: https://github.com/prantlf/v-yaml2json
