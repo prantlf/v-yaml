@@ -2,6 +2,7 @@ module yaml
 
 import prantlf.jany { Any }
 
+[noinit]
 pub struct YamlError {
 	Error
 	message string

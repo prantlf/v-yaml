@@ -7,8 +7,8 @@ import prantlf.yaml
 
 const repeats = 20
 
-json_in := os.read_file('vlang.io.har.json')!
-yaml_in := os.read_file('vlang.io.har.yaml')!
+json_in := os.read_file('src/testdata/vlang.io.har.json')!
+yaml_in := os.read_file('src/testdata/vlang.io.har.yaml')!
 
 opts := json.ParseOpts{}
 

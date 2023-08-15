@@ -61,7 +61,7 @@ Parses an input string in the YAML format to an `Any` value. See [jany] for more
 input := r'
   answer: 42
 '
-any := parse_text(input)
+any := parse_text(input)!
 ```
 
 ### parse_file(path string) !Any
@@ -69,12 +69,12 @@ any := parse_text(input)
 Loads the contents of a text file in the YAML format and parses it to an `Any` value. See [jany] for more information about the `Any` type.
 
 ```go
-any := parse_file('config.yaml')
+any := parse_file('config.yaml')!
 ```
 
-### unmarshal_text[T](input string, opts UnmarshalOpts) !T
+### unmarshal_text[T](input string, opts &UnmarshalOpts) !T
 
-Unmarshals an input string in the YAML format to an instance of `T`. See [jany] for more information about the `Any` type and the `UnmarshalOpts` struct.
+Unmarshals an input string in the YAML format to a new instance of `T`. See [jany] for more information about the `Any` type and the `UnmarshalOpts` struct.
 
 ```go
 struct Config {
@@ -84,19 +84,48 @@ struct Config {
 input := r'
   answer: 42
 '
-config := unmarshal_text[Config](input)
+config := unmarshal_text[Config](input, UnmarshalOpts{})!
 ```
 
-### unmarshal_file[T](path string, opts UnmarshalOpts) !T
+### unmarshal_text_to[T](input string, mut obj T, opts &UnmarshalOpts) !
 
-Loads the contents of a text file in the YAML format and unmarshals it to an instance of `T`. See [jany] for more information about the `Any` type and the `UnmarshalOpts` struct.
+Unmarshals an input string in the YAML format to an existing instance of `T`. See [jany] for more information about the `Any` type and the `UnmarshalOpts` struct.
 
 ```go
 struct Config {
 	answer int
 }
 
-config := unmarshal_file[Config]('config.yaml')
+input := r'
+  answer: 42
+'
+mut config := Config{}
+config := unmarshal_text_to(input, mut config, UnmarshalOpts{})!
+```
+
+### unmarshal_file[T](path string, opts &UnmarshalOpts) !T
+
+Loads the contents of a text file in the YAML format and unmarshals it to a new instance of `T`. See [jany] for more information about the `Any` type and the `UnmarshalOpts` struct.
+
+```go
+struct Config {
+	answer int
+}
+
+config := unmarshal_file[Config]('config.yaml', UnmarshalOpts{})!
+```
+
+### unmarshal_file_to[T](path string, mut obj T, opts UnmarshalOpts) !
+
+Loads the contents of a text file in the YAML format and unmarshals it to an existing instance of `T`. See [jany] for more information about the `Any` type and the `UnmarshalOpts` struct.
+
+```go
+struct Config {
+	answer int
+}
+
+mut config := Config{}
+config := unmarshal_file_to('config.yaml', mut config, UnmarshalOpts{})!
 ```
 
 ## Performance
