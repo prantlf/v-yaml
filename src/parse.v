@@ -43,13 +43,14 @@ pub fn parse_text(input string) !Any {
 }
 
 fn parse(parser &C.yaml_parser_t) !Any {
-	event := C.yaml_event_t{}
+	buf := []u8{len: int(sizeof(C.yaml_event_t))}
+	event := &C.yaml_event_t(&buf)
 	for {
-		if C.yaml_parser_parse(parser, &event) == 0 {
+		if C.yaml_parser_parse(parser, event) == 0 {
 			return fail_parse(parser)
 		}
 		defer {
-			C.yaml_event_delete(&event)
+			C.yaml_event_delete(event)
 		}
 
 		match event.@type {
@@ -66,13 +67,13 @@ fn parse(parser &C.yaml_parser_t) !Any {
 				return parse_array(parser)
 			}
 			C.YAML_SCALAR_EVENT {
-				return parse_value(parser, &event)
+				return parse_value(parser, event)
 			}
 			C.YAML_NO_EVENT {
-				return fail_decode('unexpected yaml event ${event.@type}', &event)
+				return fail_decode('unexpected yaml event ${event.@type}', event)
 			}
 			else {
-				return fail_decode('unrecognised yaml event ${event.@type}', &event)
+				return fail_decode('unrecognised yaml event ${event.@type}', event)
 			}
 		}
 	}
@@ -80,16 +81,17 @@ fn parse(parser &C.yaml_parser_t) !Any {
 }
 
 fn parse_object(parser &C.yaml_parser_t) !Any {
-	event := C.yaml_event_t{}
+	buf := []u8{len: int(sizeof(C.yaml_event_t))}
+	event := &C.yaml_event_t(&buf)
 	mut object := map[string]Any{}
 	mut is_key := false
 	mut key := ''
 	for {
-		if C.yaml_parser_parse(parser, &event) == 0 {
+		if C.yaml_parser_parse(parser, event) == 0 {
 			return fail_parse(parser)
 		}
 		defer {
-			C.yaml_event_delete(&event)
+			C.yaml_event_delete(event)
 		}
 
 		match event.@type {
@@ -98,7 +100,7 @@ fn parse_object(parser &C.yaml_parser_t) !Any {
 					object[key] = parse_object(parser)!
 					is_key = false
 				} else {
-					return fail_decode('key expected', &event)
+					return fail_decode('key expected', event)
 				}
 			}
 			C.YAML_SEQUENCE_START_EVENT {
@@ -106,15 +108,15 @@ fn parse_object(parser &C.yaml_parser_t) !Any {
 					object[key] = parse_array(parser)!
 					is_key = false
 				} else {
-					return fail_decode('key expected', &event)
+					return fail_decode('key expected', event)
 				}
 			}
 			C.YAML_SCALAR_EVENT {
 				if is_key {
-					object[key] = parse_value(parser, &event)!
+					object[key] = parse_value(parser, event)!
 					is_key = false
 				} else {
-					key = parse_string(parser, &event)!
+					key = parse_string(parser, event)!
 					is_key = true
 				}
 			}
@@ -123,10 +125,10 @@ fn parse_object(parser &C.yaml_parser_t) !Any {
 			}
 			C.YAML_NO_EVENT, C.YAML_STREAM_START_EVENT, C.YAML_STREAM_END_EVENT,
 			C.YAML_DOCUMENT_START_EVENT, C.YAML_DOCUMENT_END_EVENT {
-				return fail_decode('unexpected yaml event ${event.@type}', &event)
+				return fail_decode('unexpected yaml event ${event.@type}', event)
 			}
 			else {
-				return fail_decode('unrecognised yaml event ${event.@type}', &event)
+				return fail_decode('unrecognised yaml event ${event.@type}', event)
 			}
 		}
 	}
@@ -134,14 +136,15 @@ fn parse_object(parser &C.yaml_parser_t) !Any {
 }
 
 fn parse_array(parser &C.yaml_parser_t) !Any {
-	event := C.yaml_event_t{}
+	buf := []u8{len: int(sizeof(C.yaml_event_t))}
+	event := &C.yaml_event_t(&buf)
 	mut array := []Any{}
 	for {
-		if C.yaml_parser_parse(parser, &event) == 0 {
+		if C.yaml_parser_parse(parser, event) == 0 {
 			return fail_parse(parser)
 		}
 		defer {
-			C.yaml_event_delete(&event)
+			C.yaml_event_delete(event)
 		}
 
 		match event.@type {
@@ -152,17 +155,17 @@ fn parse_array(parser &C.yaml_parser_t) !Any {
 				array << parse_array(parser)!
 			}
 			C.YAML_SCALAR_EVENT {
-				array << parse_value(parser, &event)!
+				array << parse_value(parser, event)!
 			}
 			C.YAML_SEQUENCE_END_EVENT {
 				return array
 			}
 			C.YAML_NO_EVENT, C.YAML_STREAM_START_EVENT, C.YAML_STREAM_END_EVENT,
 			C.YAML_DOCUMENT_START_EVENT, C.YAML_DOCUMENT_END_EVENT {
-				return fail_decode('unexpected yaml event ${event.@type}', &event)
+				return fail_decode('unexpected yaml event ${event.@type}', event)
 			}
 			else {
-				return fail_decode('unrecognised yaml event ${event.@type}', &event)
+				return fail_decode('unrecognised yaml event ${event.@type}', event)
 			}
 		}
 	}
