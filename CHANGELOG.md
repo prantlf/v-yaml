@@ -1,5 +1,11 @@
 # Changes
 
+## [0.1.1](https://github.com/prantlf/v-yaml/compare/v0.1.0...v0.1.1) (2023-09-09)
+
+### Bug Fixes
+
+* Work around broken enums in anon structs in new v ([53ade3b](https://github.com/prantlf/v-yaml/commit/53ade3b88781a087351dad9d38193e05e6d62a18))
+
 ## [0.1.0](https://github.com/prantlf/v-yaml/compare/v0.0.4...v0.1.0) (2023-08-15)
 
 ### Features
