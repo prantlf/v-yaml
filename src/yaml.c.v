@@ -11,14 +11,14 @@ module yaml
 #flag @VROOT/libyaml/src/writer.o
 #include "yaml.h"
 
-[typedef]
+@[typedef]
 struct C.yaml_mark_t {
 	index  usize
 	line   usize
 	column usize
 }
 
-[typedef]
+@[typedef]
 struct C.yaml_event_t {
 	@type int
 	data  struct {
@@ -36,7 +36,7 @@ struct C.yaml_event_t {
 	start_mark C.yaml_mark_t
 }
 
-[typedef]
+@[typedef]
 struct C.yaml_parser_t {
 	problem      &char = unsafe { nil }
 	problem_mark C.yaml_mark_t
