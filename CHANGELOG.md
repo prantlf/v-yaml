@@ -1,5 +1,11 @@
 # Changes
 
+## [0.1.2](https://github.com/prantlf/v-yaml/compare/v0.1.1...v0.1.2) (2023-12-11)
+
+### Bug Fixes
+
+* Adapt for V langage changes ([16d8c86](https://github.com/prantlf/v-yaml/commit/16d8c8681c149326e6169732f4242b59d7ea4e8f))
+
 ## [0.1.1](https://github.com/prantlf/v-yaml/compare/v0.1.0...v0.1.1) (2023-09-09)
 
 ### Bug Fixes
