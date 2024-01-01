@@ -3,7 +3,7 @@ module yaml
 import prantlf.jany { UnmarshalOpts }
 
 fn test_unmarshal_null_to_scalar() {
-	unmarshal_text[int]('', UnmarshalOpts{}) or {
+	unmarshal_text[int]('') or {
 		assert err.msg() == 'null cannot be cast to int'
 		return
 	}
@@ -11,62 +11,62 @@ fn test_unmarshal_null_to_scalar() {
 }
 
 fn test_unmarshal_int() {
-	r := unmarshal_text[int]('1', UnmarshalOpts{})!
+	r := unmarshal_text[int]('1')!
 	assert r == 1
 }
 
 fn test_unmarshal_u8() {
-	r := unmarshal_text[u8]('1', UnmarshalOpts{})!
+	r := unmarshal_text[u8]('1')!
 	assert r == 1
 }
 
 fn test_unmarshal_u16() {
-	r := unmarshal_text[u16]('1', UnmarshalOpts{})!
+	r := unmarshal_text[u16]('1')!
 	assert r == 1
 }
 
 fn test_unmarshal_u32() {
-	r := unmarshal_text[u32]('1', UnmarshalOpts{})!
+	r := unmarshal_text[u32]('1')!
 	assert r == 1
 }
 
 fn test_unmarshal_u64() {
-	r := unmarshal_text[u64]('1', UnmarshalOpts{})!
+	r := unmarshal_text[u64]('1')!
 	assert r == 1
 }
 
 fn test_inmarshal_i8() {
-	r := unmarshal_text[u8]('1', UnmarshalOpts{})!
+	r := unmarshal_text[u8]('1')!
 	assert r == 1
 }
 
 fn test_inmarshal_i16() {
-	r := unmarshal_text[u16]('1', UnmarshalOpts{})!
+	r := unmarshal_text[u16]('1')!
 	assert r == 1
 }
 
 fn test_inmarshal_i64() {
-	r := unmarshal_text[u64]('1', UnmarshalOpts{})!
+	r := unmarshal_text[u64]('1')!
 	assert r == 1
 }
 
 fn test_inmarshal_f32() {
-	r := unmarshal_text[f32]('1.2', UnmarshalOpts{})!
+	r := unmarshal_text[f32]('1.2')!
 	assert r == 1.2
 }
 
 fn test_inmarshal_f64() {
-	r := unmarshal_text[f64]('1.2', UnmarshalOpts{})!
+	r := unmarshal_text[f64]('1.2')!
 	assert r == 1.2
 }
 
 fn test_inmarshal_bool() {
-	r := unmarshal_text[bool]('false', UnmarshalOpts{})!
+	r := unmarshal_text[bool]('false')!
 	assert r == false
 }
 
 fn test_inmarshal_string() {
-	r := unmarshal_text[string]('a', UnmarshalOpts{})!
+	r := unmarshal_text[string]('a')!
 	assert r == 'a'
 }
 
@@ -74,7 +74,7 @@ fn test_unmarshal_array() {
 	input := r'
 - 1
 '
-	r := unmarshal_text[[]int](input, UnmarshalOpts{})!
+	r := unmarshal_text[[]int](input)!
 	assert r == [1]
 }
 
@@ -84,19 +84,19 @@ enum Human {
 }
 
 // fn test_unmarshal_enum_num() {
-// 	r := unmarshal_text[Human]('1', UnmarshalOpts{})!
+// 	r := unmarshal_text[Human]('1')!
 // 	assert r == .woman
 // }
 
 // fn test_unmarshal_enum_nam() {
-// 	r := unmarshal_text[Human]('woman', UnmarshalOpts{})!
+// 	r := unmarshal_text[Human]('woman')!
 // 	assert r == .woman
 // }
 
 struct Empty {}
 
 fn test_unmarshal_empty_input() {
-	unmarshal_text[Empty]('', UnmarshalOpts{}) or {
+	unmarshal_text[Empty]('') or {
 		assert err.msg() == 'null cannot be cast to yaml.Empty'
 			|| err.msg() == 'null cannot be cast to .Empty' // GitHub CI
 		return
@@ -105,7 +105,7 @@ fn test_unmarshal_empty_input() {
 }
 
 fn test_unmarshal_empty_object() {
-	unmarshal_text[Empty]('{}', UnmarshalOpts{})!
+	unmarshal_text[Empty]('{}')!
 }
 
 struct PrimitiveTypes {
@@ -140,7 +140,7 @@ struct PrimitiveTypes {
 // string: "s"
 // bool: true
 // '
-// 	r := unmarshal_text[PrimitiveTypes](input, UnmarshalOpts{})!
+// 	r := unmarshal_text[PrimitiveTypes](input)!
 // 	assert r.h == .woman
 // 	assert r.u8 == 1
 // 	assert r.u16 == 2
@@ -188,7 +188,7 @@ struct OptionalTypes {
 // string: "s"
 // bool: true
 // '
-// 	r := unmarshal_text[OptionalTypes](input, UnmarshalOpts{})!
+// 	r := unmarshal_text[OptionalTypes](input)!
 // 	assert r.h? == .woman
 // 	assert r.u8? == 1
 // 	assert r.u16? == 2
@@ -212,7 +212,7 @@ fn test_unmarshal_primitive_null_type() {
 	input := r'
 int: null
 '
-	r := unmarshal_text[PrimitiveNullType](input, UnmarshalOpts{}) or {
+	r := unmarshal_text[PrimitiveNullType](input) or {
 		assert err.msg() == 'null cannot be set to int of int'
 		return
 	}
@@ -227,7 +227,7 @@ fn test_unmarshal_optional_null_type() {
 	input := r'
 int: null
 '
-	r := unmarshal_text[OptionalNullType](input, UnmarshalOpts{})!
+	r := unmarshal_text[OptionalNullType](input)!
 	r.int or { return }
 
 	assert false
@@ -242,7 +242,7 @@ fn test_unmarshal_optional_array() {
 int:
   - 1
 '
-	r := unmarshal_text[OptionalArray](input, UnmarshalOpts{})!
+	r := unmarshal_text[OptionalArray](input)!
 	assert r.int?.len == 1
 	assert r.int?[0] == 1
 }
@@ -257,7 +257,7 @@ fn test_unmarshal_array_of_options() {
 int:
 	- 1
 '
-	r := unmarshal_text[ArrayOfOptions](input, UnmarshalOpts{})!
+	r := unmarshal_text[ArrayOfOptions](input)!
 	assert r.int.len == 1
 	first := r.int[0]
 	assert first? == 1
@@ -273,7 +273,7 @@ fn test_unmarshal_array_in_struct() {
 arr:
   - 1
 '
-	r := unmarshal_text[ArrayInStruct](input, UnmarshalOpts{})!
+	r := unmarshal_text[ArrayInStruct](input)!
 	assert r.arr.len == 1
 	assert r.arr[0] == 1
 }
@@ -291,7 +291,7 @@ fn test_unmarshal_struct_in_struct() {
 inner:
   val: 1
 '
-	r := unmarshal_text[OuterStruct](input, UnmarshalOpts{})!
+	r := unmarshal_text[OuterStruct](input)!
 	assert r.inner.val == 1
 }
 
@@ -318,7 +318,7 @@ u16: null
 		cast_null_to_default: false
 		ignore_number_overflow: false
 	}
-	r := unmarshal_text[Attributes](input, opts)!
+	r := unmarshal_text_opt[Attributes](input, &opts)!
 	assert r.int == 1
 	assert r.bool == false
 	assert r.string == ''

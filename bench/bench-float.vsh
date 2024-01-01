@@ -1,4 +1,4 @@
-#!/usr/bin/env -S v -prod run
+#!/usr/bin/env -S v -prod -use-os-system-to-run run
 
 import benchmark
 import rand

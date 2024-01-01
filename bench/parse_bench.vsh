@@ -1,4 +1,4 @@
-#!/usr/bin/env -S v -prod run
+#!/usr/bin/env -S v -prod -use-os-system-to-run run
 
 import benchmark
 import os
@@ -10,12 +10,10 @@ const repeats = 20
 json_in := os.read_file('src/testdata/vlang.io.har.json')!
 yaml_in := os.read_file('src/testdata/vlang.io.har.yaml')!
 
-opts := json.ParseOpts{}
-
 mut b := benchmark.start()
 
 for _ in 0 .. repeats {
-	json.parse(json_in, &opts)!
+	json.parse(json_in)!
 }
 b.measure('parsing with prantlf.json')
 
