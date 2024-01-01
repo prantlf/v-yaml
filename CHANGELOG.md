@@ -1,5 +1,18 @@
 # Changes
 
+## [0.2.0](https://github.com/prantlf/v-yaml/compare/v0.1.2...v0.2.0) (2024-01-01)
+
+### Features
+
+* Remove options from unmarshal_text and unmarshal_file ([a069880](https://github.com/prantlf/v-yaml/commit/a06988019fc7c8af053ebaba8b0de9d5a997ea89))
+
+### BREAKING CHANGES
+
+If you just pass default options to the functions,
+just delete them. They do not expect options any more. If you use
+non-empty options, replace the function name with `<name>_opt`,
+which supports options.
+
 ## [0.1.2](https://github.com/prantlf/v-yaml/compare/v0.1.1...v0.1.2) (2023-12-11)
 
 ### Bug Fixes
