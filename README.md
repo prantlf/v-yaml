@@ -137,13 +137,15 @@ This module is only 2.6x slower than `prantlf.json` when parsing more complicate
     SPENT   271.321 ms in parsing with prantlf.json
     SPENT   708.940 ms in parsing with prantlf.yaml
 
-## TODO
+## Contributing
 
-This is a work in progress.
+In lieu of a formal styleguide, take care to maintain the existing coding style. Lint and test your code.
 
-* Add the function `stringify`.
-* Support `replacer` for `stringify` and `reviver` for `parse`.
-* Add `marshal_*` functions.
+## License
+
+Copyright (c) 2023-2024 Ferdinand Prantl
+
+Licensed under the MIT license.
 
 [VPM]: https://vpm.vlang.io/packages/prantlf.yaml
 [prantlf.jany]: https://github.com/prantlf/v-jany
