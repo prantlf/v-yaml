@@ -296,12 +296,12 @@ inner:
 }
 
 struct Attributes {
-	int    int    @[required]
-	bool   bool   @[skip]
+	int    int  @[required]
+	bool   bool @[skip]
 	string string
-	f64    f64    @[json: float; required]
-	u8     u8     @[nooverflow]
-	u16    u16    @[nullable]
+	f64    f64 @[json: float; required]
+	u8     u8  @[nooverflow]
+	u16    u16 @[nullable]
 }
 
 fn test_attributes() {
@@ -313,9 +313,9 @@ u8: 1234
 u16: null
 '
 	opts := UnmarshalOpts{
-		require_all_fields: false
-		forbid_extra_keys: false
-		cast_null_to_default: false
+		require_all_fields:     false
+		forbid_extra_keys:      false
+		cast_null_to_default:   false
 		ignore_number_overflow: false
 	}
 	r := unmarshal_text_opt[Attributes](input, &opts)!
