@@ -1,5 +1,11 @@
 # Changes
 
+## [0.2.2](https://github.com/prantlf/v-yaml/compare/v0.2.1...v0.2.2) (2024-11-16)
+
+### Bug Fixes
+
+* Fix sources for the new V compiler ([8c4a27d](https://github.com/prantlf/v-yaml/commit/8c4a27d8c3aefa337bd7596cda87d1d23e3e38a4))
+
 ## [0.2.1](https://github.com/prantlf/v-yaml/compare/v0.2.0...v0.2.1) (2024-01-28)
 
 ### Bug Fixes
