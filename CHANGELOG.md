@@ -1,5 +1,11 @@
 # Changes
 
+## [0.2.3](https://github.com/prantlf/v-yaml/compare/v0.2.2...v0.2.3) (2025-07-31)
+
+### Bug Fixes
+
+* Fix compiler warnings ([526452e](https://github.com/prantlf/v-yaml/commit/526452e9c64d4caad2587d0521fb727a94f46497))
+
 ## [0.2.2](https://github.com/prantlf/v-yaml/compare/v0.2.1...v0.2.2) (2024-11-16)
 
 ### Bug Fixes
