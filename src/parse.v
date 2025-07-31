@@ -6,7 +6,7 @@ import prantlf.jany { Any }
 fn C.strtod(charptr, &charptr) f64
 
 pub fn parse_file(path string) !Any {
-	file := C.fopen(path.str, 'r'.str)
+	file := C.fopen(path.str, c'r')
 	if isnil(file) {
 		return error("${os.posix_get_error_msg(C.errno)} (\"${path}\")")
 	}
